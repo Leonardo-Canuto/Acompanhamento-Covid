@@ -1,0 +1,28 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import os
+from time import sleep
+
+# Criando uma variavel para abrir o site
+url = "https://www.coronatracker.com/pt-br/"
+
+# Usando o webdrive para abrir o site e o get com a varialve da url
+driver = webdriver.Chrome()
+driver.get(url)
+
+# Pausa de 5 segundos para carregar o site
+# Utilizando o Xpath para capturar as informações no lugar correto
+
+sleep(5)
+infectados = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/span')
+curados = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/span')
+mortos = driver.find_element_by_xpath('//*[@id="__layout"]/div/main/div/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/span')
+
+# Colocando as variáveis com os dados do site em texto, para depois poder imprimir
+infectadostext = infectados.text
+curadostext = curados.text
+mortostext = mortos.text
+
+print(f'Casos confirmados {infectadostext}')
+print(f'Casos Recuperados {curadostext}')
+print (f'Mortes confirmadas {mortostext}')
